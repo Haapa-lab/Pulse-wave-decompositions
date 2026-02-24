@@ -1,0 +1,31 @@
+[build-system]
+requires = ["uv-build"]
+build-backend = "uv_build"
+
+[project]
+name = "pulse-decomposition"
+version = "1.0.0"
+description = "Algorithm for pulse wave decomposition using consticted non-linear optimization"
+readme = "README.md"
+requires-python = ">=3.8"
+authors = [{name = "Mira Haapatikka", email = "mira.haapatikka4@gmail.com"},
+  {name = "Antti Vehkaoja", email = "antti.vehkaoja@tuni.fi"},]
+maintainers = [
+  {name = "Mira Haapatikka", email = "mira.haapatikka@gmail.com"}
+]
+keywords = ["pulse wave analysis", "decomposition", "arterial pulse wave"]
+
+[project.scripts]
+run_pulse_decomposition = "pulse_decomposition.example:go"
+
+[tool.decompositions]
+requirements-file = "requirements.txt"
+
+[tool.ruff]
+package = "ruff"
+description = "Ruff linter (installed as a uv tool)"
+run = "ruff"
+args = ["format", "."]
+
+[project.urls]
+Homepage = "https://research.tuni.fi/stb/"
