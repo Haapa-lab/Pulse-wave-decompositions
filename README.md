@@ -15,28 +15,27 @@ Key components:
 
 ## Install and build
 -----------------
+Option 1. Use `uv`
 
-1. Use `uv`
-
-    1.1 Install `uv` (if you don't have it):
+    Step 1. Install `uv` (if you don't have it):
 
     ```bash
     pip install uv
     ```
 
-    1.2. Build a wheel:
+    Step 2. Build a wheel:
 
     ```bash
     uv build
     ```
 
-    1.3. Install the built wheel (or you can install directly from source):
+    Step 3. Install the built wheel (or you can install directly from source):
 
     ```bash
     pip install dist/*.whl
     ```
 
-2. Install directly with pip
+Option 2. Install directly with pip
 ```bash
 pip install -r requirements.txt
 pip install .
