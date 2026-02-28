@@ -19,7 +19,7 @@ class GaussianLognormalModel:
             raise ValueError("num_logn must be >= 1")
         self.num_logn = num_logn
 
-    def model(self, t, amp_g, mean_g, sigma_g, *log_params):
+    def __model(self, t, amp_g, mean_g, sigma_g, *log_params):
         """Evaluate the model on a time grid.
 
         The parameter layout is:
@@ -129,9 +129,9 @@ class GaussianLognormalModel:
 
         try:
             popt, _ = curve_fit(
-                self.model, time, signal, p0=p0, bounds=(lb, ub), maxfev=40000
+                self.__model, time, signal, p0=p0, bounds=(lb, ub), maxfev=40000
             )
-            fitted = self.model(time, *popt)
+            fitted = self.__model(time, *popt)
             return popt, fitted
         except Exception as e:
             print(f"Gauss+Lognormal fit error: {e}")

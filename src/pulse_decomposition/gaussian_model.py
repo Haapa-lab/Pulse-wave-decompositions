@@ -52,7 +52,7 @@ class GaussianModel:
             raise ValueError("num_components must be >= 1")
         self.num_components = num_components
 
-    def model(self, x, *params):
+    def __model(self, x, *params):
         """Evaluate the Gaussian mixture model at points 'x'.
 
         Each Gaussian component uses a 3-parameter tuple:
@@ -136,10 +136,10 @@ class GaussianModel:
             ub.extend([np.inf, tmax + 0.01 * trange, trange])
 
         try:
-            popt, pcov = curve_fit(
-                self.model, time, signal, p0=p0, bounds=(lb, ub), maxfev=20000
+            popt, _ = curve_fit(
+                self.__model, time, signal, p0=p0, bounds=(lb, ub), maxfev=20000
             )
-            fitted = self.model(time, *popt)
+            fitted = self.__model(time, *popt)
             return popt, fitted
         except Exception as e:
             print(f"Gaussian fit error: {e}")

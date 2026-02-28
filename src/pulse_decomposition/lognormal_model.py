@@ -59,7 +59,7 @@ class LognormalModel:
             raise ValueError("num_components must be >= 1")
         self.num_components = num_components
 
-    def model(self, t, *params):
+    def __model(self, t, *params):
         """Evaluate the Lognormal mixture model at sample points 't'.
 
         Each Lognormal component is parameterized by a group of four values:
@@ -154,10 +154,10 @@ class LognormalModel:
             ub.extend([np.inf, 1, tmax + 0.01 * trange, np.inf])
 
         try:
-            popt, pcov = curve_fit(
-                self.model, time, signal, p0=p0, bounds=(lb, ub), maxfev=20000
+            popt, _ = curve_fit(
+                self.__model, time, signal, p0=p0, bounds=(lb, ub), maxfev=20000
             )
-            fitted = self.model(time, *popt)
+            fitted = self.__model(time, *popt)
             return popt, fitted
         except Exception as e:
             print(f"Lognormal fit error: {e}")
